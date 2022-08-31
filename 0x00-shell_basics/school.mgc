@@ -1,2 +1,2 @@
 #!/bin/bash
-!:mime school
+!:mime School
