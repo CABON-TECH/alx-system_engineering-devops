@@ -1,3 +1,4 @@
-0 string SCHOOL School data
-file -C -m school.mgc
-file -m school.mgc
+#!/bin/bash
+file -C -m Shool
+file -m school.mgc test .*
+file -i -m school.mgc test .*
