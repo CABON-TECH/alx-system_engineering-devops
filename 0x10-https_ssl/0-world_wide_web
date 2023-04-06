@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+!/usr/bin/env bash
 #prints subdomain info
 
 subdomains_all=( "www" "lb-01" "web-01" "web-02" )
