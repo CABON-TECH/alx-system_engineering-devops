@@ -1,17 +1,23 @@
 #!/usr/bin/env bash
 #prints subdomain info
 
-function dig_site() {
-string=$(dig "$2"."$1" | grep -A1 'ANSWER SECTION:' | tail -n 1 | awk '{print $4, $5}')
-echo "$2 $string" | awk '{print "The subdomain "$1" is a "$2" record and points to "$3'}
+subdomains_all=( "www" "lb-01" "web-01" "web-02" )
 
-if ["$#" == 1]
-then
-   dig_site "$1" "www"
-   dig_site "$1" "lb-01"
-   dig_site "$1" "web-01"
-   dig_site "$1" "web-02"
-elif ["$#" == 2]
-then
-   dig_site "$1" "$2"
+runDig () {
+    subdomain=$1
+    domain=$2
+
+    dig "$subdomain.$domain" | grep -A1 'ANSWER SECTION:' | tail -1 | awk -v s="$subdomain" 'BEGIN { FS = " " } ; { print "The subdomain " s " is a " $4 " record and points to " $5 }'
+}
+
+if [ $# -eq 1 ]; then
+    domain="$1"
+    for i in "${subdomains_all[@]}"
+    do
+	runDig "$i" "$domain"
+    done
+elif [ $# -eq 2 ]; then
+    domain="$1"
+    subdomain="$2"
+    runDig "$subdomain" "$domain"
 fi
