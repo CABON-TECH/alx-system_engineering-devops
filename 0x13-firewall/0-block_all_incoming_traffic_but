@@ -1,0 +1,13 @@
+#checkin if the firewall is installed and its status
+sudo ufw status
+
+#set up the firewall and add a rule to enable ssh connection
+
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+
+#allow incoming connections to various ports
+sudo ufw allow 22/tcp #ssh connection port
+sudo ufw 80/tcp #http connection port
+sudo ufw allow 443/tcp #ssl connection port
+sudo ufw enable
