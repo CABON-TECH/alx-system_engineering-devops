@@ -1,13 +1,16 @@
-#checkin if the firewall is installed and its status
-sudo ufw status
+#!/usr/bin/env bash
+#configures an uncomplicated firewall that blocks all incoming traffic
+#for the tcp ports 22(ssh) 443(https ssl) and 80(http).
 
-#set up the firewall and add a rule to enable ssh connection
+apt-get -y install ufw
+yes | ufw disable
+yes | ufw reset
 
-sudo ufw default deny incoming
-sudo ufw default allow outgoing
+yes | ufw default deny incoming
+yes | ufw default allow outgoing
 
-#allow incoming connections to various ports
-sudo ufw allow 22/tcp #ssh connection port
-sudo ufw 80/tcp #http connection port
-sudo ufw allow 443/tcp #ssl connection port
-sudo ufw enable
+yes | ufw allow 80/tcp
+yes | ufw allow ssh
+yes | ufw allow 443
+yes | ufw allow https
+yes | ufw enable
