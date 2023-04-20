@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-# This bash script uses ssh to connect to my Holberton School
-# Ubuntu server using the private key 
-
-ssh -i ~/.ssh/school ubuntu@34.207.188.210
